@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -19,12 +21,14 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        working-directory: ./carrental-frontend
-        run: npm install
+        run: |
+          cd carrental-frontend
+          npm install
 
       - name: Build the project
-        working-directory: ./carrental-frontend
-        run: npm run build
+        run: |
+          cd carrental-frontend
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
