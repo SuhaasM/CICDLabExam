@@ -19,14 +19,12 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: |
-          cd carrental-frontend
-          npm install
+        working-directory: ./carrental-frontend
+        run: npm install
 
       - name: Build the project
-        run: |
-          cd carrental-frontend
-          npm run build
+        working-directory: ./carrental-frontend
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
